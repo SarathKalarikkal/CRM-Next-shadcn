@@ -200,7 +200,7 @@ const AuthForm = ({ auth }: { auth: AuthType }) => {
           <p className="text-sm text-muted-foreground">
             {auth === "signin" ? (
               <>
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link
                   href="/auth/signUp"
                   className="text-primary font-medium hover:underline"

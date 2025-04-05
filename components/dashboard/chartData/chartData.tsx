@@ -3,7 +3,7 @@
 import { TrendingUp } from "lucide-react";
 import { Pie, PieChart, Cell, Tooltip, YAxis, ResponsiveContainer } from "recharts";
 import { dashboardData } from "@/constants/dashboardData";
-import { Bar, BarChart, CartesianGrid, XAxis,Dot, Line, LineChart } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, Line, LineChart } from "recharts"
 
 import {
   Card,

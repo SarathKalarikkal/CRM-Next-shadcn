@@ -1,5 +1,5 @@
 "use client"
-import { Calendar, Home, Inbox, Search, Settings, Users,File,NotepadText, SquareCheckBig, TicketIcon, UsersRound, Moon, Sun } from "lucide-react"
+import {  Home, Users,File,NotepadText, SquareCheckBig, TicketIcon, UsersRound, Moon, } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { Switch } from "@/components/ui/switch"

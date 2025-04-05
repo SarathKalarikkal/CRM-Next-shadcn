@@ -28,20 +28,9 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogTitle,  
 } from "@/components/ui/dialog"
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
@@ -146,8 +135,7 @@ const CustomerTable = () => {
     (table.getColumn("name")?.getFilterValue() as string) || "";
   const emailFilter =
     (table.getColumn("email")?.getFilterValue() as string) || "";
-  const idFilter =
-    (table.getColumn("id")?.getFilterValue() as string) || "";
+
   
   const joinedFilter =
     (table.getColumn("joined")?.getFilterValue() as string) || "";

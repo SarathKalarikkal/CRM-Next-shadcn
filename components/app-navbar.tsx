@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "./ui/button";
-import { Bell, Menu, Search, User2Icon, LogOut } from "lucide-react";
+import { Bell,  User2Icon, LogOut } from "lucide-react";
 import { SidebarTrigger } from "./ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
