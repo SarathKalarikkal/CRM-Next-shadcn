@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { Bell,  User2Icon, LogOut } from "lucide-react";
+import { Bell, User2Icon, LogOut } from "lucide-react";
 import { SidebarTrigger } from "./ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -17,30 +17,40 @@ import { useRouter } from "next/navigation";
 
 const AppNavbar = () => {
   const router = useRouter();
-  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+  const [userName, setUserName] = useState<string | null>(null);
 
-const userName = currentUser?.email?.split("@")[0];
+  useEffect(() => {
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        const name = parsedUser?.email?.split("@")[0];
+        setUserName(name);
+      } catch (err) {
+        console.error("Error parsing currentUser:", err);
+      }
+    }
+  }, []);
 
-const handleLogout = () => {
-  localStorage.removeItem("currentUser");
-  document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  router.push("/auth/signIn");
-};
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    document.cookie =
+      "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    router.push("/auth/signIn");
+  };
 
   return (
     <div className="flex justify-between items-center p-4 w-full h-16 custom-navbar">
       <div>
         <SidebarTrigger />
-        <Button variant="ghost" size="icon">
-         
-        </Button>
+        <Button variant="ghost" size="icon"></Button>
       </div>
       <div className="flex items-center gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="cursor-pointer">
               <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
+              <AvatarFallback>{userName?.charAt(0) || "U"}</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
@@ -48,10 +58,13 @@ const handleLogout = () => {
             <DropdownMenuSeparator />
             <DropdownMenuItem className="flex items-center gap-2">
               <User2Icon className="h-4 w-4" />
-              <span>{userName}</span>
+              <span>{userName || "User"}</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex items-center gap-2 text-red-600" onClick={handleLogout}>
+            <DropdownMenuItem
+              className="flex items-center gap-2 text-red-600"
+              onClick={handleLogout}
+            >
               <LogOut className="h-4 w-4" />
               <span>Logout</span>
             </DropdownMenuItem>
